@@ -1,0 +1,25 @@
+{
+  "port": 8081,
+  "users": [
+    { "username": "my-user", "password": "my-password" }
+  ],
+  "garage": {
+    "name": "Home",
+    "doors": [
+      {
+        "name": "Right",
+        "sensorPin": 27,
+        "triggerPin": 24,
+        "invertSensor": true,
+        "toggleDuration": 10
+      },
+      {
+        "name": "Left",
+        "sensorPin": 17,
+        "triggerPin": 23,
+        "invertSensor": true,
+        "toggleDuration": 10
+      }
+    ]
+  }
+}
