@@ -22,7 +22,7 @@ export const DoorItem = ({ door, onClick }: Props) => (
       <Image
         width="100%"
         height="100%"
-        src={`${door.state}.png`}
+        src={`${door.state.toLowerCase()}.png`}
         onClick={onClick}
       />
     </Card.Body>

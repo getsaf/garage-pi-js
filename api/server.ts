@@ -9,7 +9,6 @@ const doors: Door[] = garage.doors.map(doorConfig => new Door(doorConfig));
 
 if (process.env.NODE_ENV !== 'development') {
   app.all("/*", (req, res, next) => {
-    res.contentType("application/json");
     const b64auth = (req.headers.authorization || "").split(" ")[1] || "";
     const [username, password] = Buffer.from(b64auth, "base64").toString().split(":");
     const user = users.find( user => user.username === username && user.password === password);
@@ -17,12 +16,13 @@ if (process.env.NODE_ENV !== 'development') {
       console.log(user.username, req.method, req.url);
       next();
     } else {
+      res.set('WWW-Authenticate', 'Basic realm="example"')
       return res.sendStatus(401);
     }
   });
 }
 
-app.use('/', express.static('build'));
+app.use(express.static('build'));
 
 app.get("/door", (_req, res) => {
   res.send(doors.map(door => ({name: door.config.name, state: door.state})));
